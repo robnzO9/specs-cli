@@ -10,13 +10,13 @@ Your task is to comprehensively analyze the project's codebase and extract all s
 
 ## Process Overview
 
-This unified extractor will create five specification files sequentially in the `specs/` directory, following a dependency-optimized order:
+This unified extractor will create specification files across `specs/` and `architecture/` directories, following a dependency-optimized order:
 
 **Phase 1: Foundation Layer**
 1. `specs/data-model.md` - Data structures, entities, and relationships (foundational - no dependencies)
 
-**Phase 2: Core Logic Layer**  
-2. `specs/infrastructure.md` - Deployment, storage, network, and monitoring (depends on data model)
+**Phase 2: Architecture Layer**
+2. `architecture/infrastructure.md` - Deployment, storage, network, and monitoring (depends on data model)
 
 **Phase 3: Business Layer**
 3. `specs/business-logic.md` - User scenarios, business rules, and workflows (depends on data model)
@@ -26,6 +26,11 @@ This unified extractor will create five specification files sequentially in the 
 
 **Phase 5: Presentation Layer**
 5. `specs/ui-design.md` - UI components, user flows, and UX patterns (depends on business logic and API contract)
+
+**Phase 6: Quality & Governance Baselines**
+6. `architecture/nfr-baseline.md` - Measured non-functional properties (performance, security, reliability)
+7. `architecture/risk-register.md` - Known technical risks and mitigation strategies
+8. `architecture/quality-metrics.md` - Test coverage, defect density, and quality KPI baseline
 
 This sequential approach ensures that each specification can properly reference and build upon the previously extracted specifications, resulting in higher quality and more accurate cross-references.
 
@@ -198,7 +203,7 @@ Before creating specifications, ensure you have:
 - Focus on entities, relationships, and data structures
 - This becomes the foundation for all other specifications
 
-**Step 2: Infrastructure Layer (specs/infrastructure.md)**  
+**Step 2: Infrastructure Layer (architecture/infrastructure.md)**  
 - Extract second, referencing the data model for storage requirements
 - Focus on deployment, storage, network, and monitoring
 - Can reference data model entities for storage design
@@ -310,7 +315,7 @@ Before creating specifications, ensure you have:
 
 ### Infrastructure Extraction
 
-**Template for `specs/infrastructure.md`:**
+**Template for `architecture/infrastructure.md`:**
 ```markdown
 # Infrastructure
 
@@ -362,6 +367,88 @@ Before creating specifications, ensure you have:
 
 ## Open Questions
 [Add any UI/UX design related questions or areas of uncertainty that need to be addressed]
+```
+
+### Quality & Governance Baseline Extraction
+
+**Template for `architecture/nfr-baseline.md`:**
+
+Measure and document the current non-functional properties of the system from actual code, configuration, benchmarks, and test results.
+
+```markdown
+# Non-Functional Requirements Baseline
+
+## Performance
+- [Metric]: [Measured value] (e.g. Search latency: ~85ms p95)
+- [Metric]: [Measured value]
+
+## Security
+- [Aspect]: [Current state] (e.g. Auth: JWT with 24h expiry)
+- [Aspect]: [Current state]
+
+## Reliability
+- [Aspect]: [Current state] (e.g. Error handling: Try/except with logging)
+- [Aspect]: [Current state]
+
+## Scalability
+- [Aspect]: [Current state] (e.g. Concurrency: Single-worker, no horizontal scaling)
+- [Aspect]: [Current state]
+
+## Open Questions
+[Any non-functional properties that could not be measured or determined]
+```
+
+**Template for `architecture/risk-register.md`:**
+
+Identify known technical risks from codebase analysis, architecture decisions, and known limitations.
+
+```markdown
+# Risk Register
+
+## Technical Risks
+
+### [Risk Name]
+- **Description**: [What could go wrong]
+- **Likelihood**: High / Medium / Low
+- **Impact**: High / Medium / Low
+- **Mitigation**: [Strategy to reduce risk]
+- **Status**: Open / Mitigated / Accepted
+
+## Dependency Risks
+
+### [Risk Name]
+- **Description**: [External dependency that could fail or change]
+- **Likelihood**: High / Medium / Low
+- **Impact**: High / Medium / Low
+- **Mitigation**: [Strategy]
+- **Status**: Open / Mitigated / Accepted
+```
+
+**Template for `architecture/quality-metrics.md`:**
+
+Document current quality metrics as a baseline for future comparison.
+
+```markdown
+# Quality Metrics Baseline
+
+## Test Coverage
+- Overall code coverage: [%]
+- Unit test coverage: [%]
+- Integration test coverage: [%]
+- Untested modules: [List]
+
+## Defect Density
+- Known open defects: [Count]
+- Critical defects: [Count]
+- Technical debt items: [List]
+
+## Code Quality
+- Linting status: [Pass / Fail / Not configured]
+- Type checking: [Pass / Fail / Not configured]
+- Dependency vulnerabilities: [Count or N/A]
+
+## Open Questions
+[Any quality properties that could not be determined]
 ```
 
 ## Phase 3: Cross-Reference Integration
@@ -497,15 +584,18 @@ The unified extraction process should achieve:
 ## Execution Instructions
 
 1. **Start with comprehensive codebase scanning** using the defined patterns
-2. **Create all five specification files** in the `specs/` directory in sequential order:
-   - specs/data-model.md (Foundation)
-   - specs/infrastructure.md (Core Logic)
-   - specs/business-logic.md (Business Layer)
-   - specs/api-contract.md (Interface Layer)
-   - specs/ui-design.md (Presentation Layer)
+2. **Create specification files** across `specs/` and `architecture/` in sequential order:
+   - `specs/data-model.md` (Foundation)
+   - `architecture/infrastructure.md` (Architecture Layer — HOW it is built)
+   - `specs/business-logic.md` (Business Layer — WHAT it does)
+   - `specs/api-contract.md` (Interface Layer)
+   - `specs/ui-design.md` (Presentation Layer)
+   - `architecture/nfr-baseline.md` (Quality: Non-functional baseline)
+   - `architecture/risk-register.md` (Quality: Risk baseline)
+   - `architecture/quality-metrics.md` (Quality: Quality baseline)
 3. **Extract content sequentially** following the dependency-optimized order
 4. **Add cross-references** as you build upon previously extracted specifications
 5. **Review and refine** all specifications for accuracy and completeness
 6. **Ensure no content duplication** while maintaining proper referencing
 
-The final result should be five cohesive, cross-referenced specification files in the `specs/` directory that together provide a complete picture of the project without overlapping content, with each specification properly building upon the foundation established by the previous ones.
+The final result should be cohesive, cross-referenced specification files in `specs/` (WHAT the system does) and `architecture/` (HOW it is built), plus three quality governance baseline documents, that together provide a complete picture of the project without overlapping content.

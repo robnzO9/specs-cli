@@ -42,7 +42,10 @@ Before creating feature specifications, determine the project's current state to
     - Look for `specs/business-logic.md`
     - Look for `specs/data-model.md`
     - Look for `specs/ui-design.md`
-    - Look for `specs/infrastructure.md`
+    - Look for `architecture/infrastructure.md`
+    - Look for `architecture/nfr-baseline.md`
+    - Look for `architecture/risk-register.md`
+    - Look for `architecture/quality-metrics.md`
 
 2. **Check for existing codebase**:
     - Analyze the project structure for substantial implementation files
@@ -181,11 +184,78 @@ For each specification type template defined below, create a separate file in th
 [Add any UI/UX design related questions or areas of uncertainty that need to be addressed]
 ```
 
+### TYPE: nfr
+**File Output**: `[sanitized-feature-name]-nfr.md`
+
+```markdown
+# Non-Functional Requirements
+
+## Performance
+- [Requirement]: [Target value] (e.g. API response time: <200ms p95)
+- [Requirement]: [Target value]
+
+## Security
+- [Requirement]: [Description] (e.g. All endpoints require authentication)
+- [Requirement]: [Description]
+
+## Reliability
+- [Requirement]: [Target value] (e.g. Availability: 99.9%)
+- [Requirement]: [Description]
+
+## Scalability
+- [Requirement]: [Target value] (e.g. Support 1,000 concurrent users)
+- [Requirement]: [Description]
+
+## Usability
+- [Requirement]: [Description] (e.g. Page load: <1 second on standard connection)
+- [Requirement]: [Description]
+
+## Open Questions
+[Add any NFR-related questions or areas of uncertainty that need to be addressed]
+```
+
+### TYPE: testing-strategy
+**File Output**: `[sanitized-feature-name]-testing-strategy.md`
+
+```markdown
+# Testing Strategy
+
+## Unit Tests
+- **Coverage target**: >80% code coverage
+- **Scope**: [List of modules/components to unit test]
+- **Fixtures/Mocks**: [What needs to be mocked]
+
+## Integration Tests
+- **Scope**: [List of component interactions to test]
+- **Test data**: [How test data is set up]
+
+## System Tests
+- **Scope**: End-to-end workflows tracing requirements
+- **Requirements covered**:
+  - REQ-001: [Test name or description]
+  - REQ-002: [Test name or description]
+
+## Acceptance Tests
+- **Scope**: User scenarios from STORY.md
+- **Scenarios covered**:
+  - Scenario 1: [Test description]
+  - Scenario 2: [Test description]
+
+## Non-Functional Tests
+- **Performance**: [What to test, target metric]
+- **Security**: [What to test, e.g. OWASP Top 10 checklist]
+- **Load**: [Concurrency or volume targets]
+
+## Open Questions
+[Add any testing-related questions or uncertainties that need to be clarified]
+```
+
 ### Phase 4: Generate specification files (Mode-dependent)
 
 1. **Analyze requirements and create specification files**:
 
     - For each specification type template defined above, create the corresponding file in the feature subdirectory: `specs/[sanitized-feature-name]/`
+    - This includes the two quality governance files: `[sanitized-feature-name]-nfr.md` (non-functional requirements) and `[sanitized-feature-name]-testing-strategy.md` (test plan).
     - As you don't know yet the technologies and frameworks being used for implementation, you must describe all specifications technology-agnostic.
     
     **Full Mode - Comprehensive Analysis**:
@@ -193,6 +263,8 @@ For each specification type template defined below, create a separate file in th
     - Look for established patterns, naming conventions, and architectural decisions that should be followed.
     - Identify existing model elements, API interfaces, and UI components that the new feature should integrate with or extend.
     - Consider how the new feature fits into the existing business logic and data flow.
+    - When creating `[sanitized-feature-name]-nfr.md`: reference `architecture/nfr-baseline.md` to understand current system performance, security, and reliability properties, and set feature targets that are consistent with or improve upon the baseline.
+    - When creating `[sanitized-feature-name]-nfr.md` and `[sanitized-feature-name]-testing-strategy.md`: review `architecture/risk-register.md` for existing risks that may affect the feature's NFR targets or test scope.
     
     **Bootstrap Mode - Foundation-Focused Analysis**:
     - Focus primarily on the feature description provided by the developer.

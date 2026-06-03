@@ -1,10 +1,10 @@
 # [x] Specs CLI
 
-Specs CLI is an agentic CLI for AI-assisted specification-driven development. It applies the DSPI Workflow.
+Specs CLI is an agentic CLI for AI-assisted specification-driven development. It applies the DSPI Verified Workflow—combining systematic governance with traceability for auditable, quality-gated feature delivery.
 
-## DSPI Workflow
+## DSPI Verified Workflow
 
-Ship features deliberately. DSPI is an AI-assisted, specification-first workflow that turns ideas into well-defined specs, actionable plans, and tested code — with traceability at every step. Instead of diving straight into code, you capture intent, specify neutral requirements, plan confidently, and implement with quality gates that keep docs and code in sync.
+Ship features deliberately with verified quality gates. DSPI Verified combines specification-driven development with ASPICE-aligned quality practices, enabling traceable, systematic feature delivery with explicit governance. Capture intent, specify neutral requirements, plan confidently, and implement with quality gates and artifact discipline that keep docs and code in sync.
 
 With Specs CLI, each phase has a simple command. Outputs live in your repo, are reviewable, and remain versioned. The agent accelerates documentation and validation; you make the decisions.
 
@@ -13,26 +13,28 @@ With Specs CLI, each phase has a simple command. Outputs live in your repo, are 
 - Planning — Translate specifications into an implementation plan: phases, tasks, testing strategy, risks, and integration notes. Every task maps to a spec, making scope and success measurable.
 - Implementation — Execute the plan iteratively. Keep documentation and code synchronized; validate with automated checks and human review. When tests pass and specs are satisfied, the feature is complete.
 
-Why teams use DSPI:
-- Clarity: specifications are the single source of truth.
-- Control: humans approve; AI assists.
-- Consistency: templates reduce ambiguity and prevent drift.
-- Traceability: every change links back to story and specs.
+Why teams use DSPI Verified:
+- **Clarity**: Specifications are the single source of truth across discovery through implementation.
+- **Control**: Humans approve all decisions; AI accelerates documentation and validation.
+- **Consistency**: ASPICE-aligned templates and quality gates reduce ambiguity and prevent drift.
+- **Traceability**: Every change is traceable from story → specification → design → code → test.
+- **Governance**: Explicit quality gates, artifact discipline, and ASPICE process dimensions (REQ, DES, IMP, VER, CM, QA, SUP) ensure systematic, auditable delivery.
+- **Verification**: Built-in testing strategy, design reviews, and requirement traceability validate feature completeness.
 
 ## Installation
 
 | IDE | 1. Agent Installation | 2. Commands Installation (agentic) |
 | --- | --- | --- |
-| Roo Code | Click [⋯] → Modes → Import Mode → Select [dspi-developer.yaml](roo-modes/dspi-developer.yaml) | Switch to DSPI Developer and type task: `install commands` |
-| Cline | Copy [dspi-developer.md](agents/dspi-developer.md) into `your-project/.clinerules/` | Type task: `install DSPI commands` |
-| Windsurf | Copy [dspi-developer.md](agents/dspi-developer.md) into `your-project/.windsurf/rules/` | Type task: `install DSPI commands` |
-| Trae AI | Create new Agent with name: *DSPI Developer* → Paste content of [dspi-developer.md](agents/dspi-developer.md) | Switch to DSPI Developer and enter: `install commands` |
-| Visual Studio Code | Copy [dspi-developer.md](agents/dspi-developer.md) to `your-project/.github/agents/dspi-developer.agent.md` |  |
-| Others | Copy [dspi-developer.md](agents/dspi-developer.md) into your project | Ask: `@dspi-developer.md install commands` |
+| Roo Code | Click [⋯] → Modes → Import Mode → Select [dspi-verified-developer.yaml](roo-modes/dspi-verified-developer.yaml) | Switch to DSPI Verified Developer and type task: `install commands` |
+| Cline | Copy [dspi-verified-developer.md](agents/dspi-verified-developer.md) into `your-project/.clinerules/` | Type task: `install DSPI Verified commands` |
+| Windsurf | Copy [dspi-verified-developer.md](agents/dspi-verified-developer.md) into `your-project/.windsurf/rules/` | Type task: `install DSPI Verified commands` |
+| Trae AI | Create new Agent with name: *DSPI Verified Developer* → Paste content of [dspi-verified-developer.md](agents/dspi-verified-developer.md) | Switch to DSPI Verified Developer and enter: `install commands` |
+| Visual Studio Code | Copy [dspi-verified-developer.md](agents/dspi-verified-developer.md) to `your-project/.github/agents/dspi-verified-developer.agent.md` |  |
+| Others | Copy [dspi-verified-developer.md](agents/dspi-verified-developer.md) into your project | Ask: `@dspi-verified-developer.md install commands` |
 
-Now ask the Agent what to do next and it will guide you through the DSPI Workflow.
+Now ask the Agent what to do next and it will guide you through the DSPI Verified Workflow.
 
-Want to apply the workflow manually, here is how: [DSPI_WORKFLOW.md](DSPI_WORKFLOW.md)
+Want to apply the workflow manually, here is how: [DSPI_VERIFIED_WORKFLOW.md](DSPI_VERIFIED_WORKFLOW.md)
 
 ## Customization
 
@@ -43,8 +45,8 @@ This is how you can customize Specs CLI for your specific needs:
     - This allows you to make changes and share them with others.
 
 2. **Adapt command management**:
-    - Change section `Command Management` in `agents/dspi-developer.md` to match your fork.
-    - Do the same change in `roo-modes/dspi-developer.yaml`.
+    - Update the `Command Management` section in `agents/dspi-verified-developer.md` to reference your fork.
+    - Update the same section in `roo-modes/dspi-verified-developer.yaml` (if you use Roo Code).
     - The URL should look like this in both Agents:
         ```
         https://raw.githubusercontent.com/[your-username]/specs-cli/main/commands/
@@ -59,7 +61,7 @@ This is how you can customize Specs CLI for your specific needs:
 4. **Create a stable version**:
     - Create a new version branch in your fork (e.g. `custom1`).
     - Push to the new branch (e.g. `custom1`).
-    - Update the URL in `agents/dspi-developer.md` and `roo-modes/dspi-developer.yaml` to point to the new branch.
+    - Update the command URLs in `agents/dspi-verified-developer.md` and `roo-modes/dspi-verified-developer.yaml` (if applicable) to point to your new branch.
     - Example:
         ```
         https://raw.githubusercontent.com/[your-username]/specs-cli/custom1/commands/
