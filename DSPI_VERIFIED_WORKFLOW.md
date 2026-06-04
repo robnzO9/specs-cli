@@ -33,16 +33,16 @@ project-root/
 │   ├── infrastructure.md             ← Global infrastructure
 │   ├── ui-design.md                  ← Global UI patterns
 │   │
-│   └── [feature-name]/
+│   └── [NN-feature]/
 │       ├── STORY.md                  ← REQ: Feature requirements
-│       ├── [feature]-api-contract.md ← REQ: APIs (or "Not Applicable")
-│       ├── [feature]-data-model.md   ← REQ: Data structures (or reference)
-│       ├── [feature]-ui-design.md    ← REQ: UI design (or "Not Applicable")
-│       ├── [feature]-business-logic.md ← REQ: Workflows and rules
-│       ├── [feature]-nfr.md          ← REQ: Non-functional requirements
-│       ├── [feature]-plan.md         ← IMP: Implementation plan
-       ├── [feature]-traceability.md ← CM:  Req → Code → Test mapping
-       └── [feature]-testing-strategy.md ← VER: IF novel test approach
+│       ├── [NN-feature]-api-contract.md ← REQ: APIs (or "Not Applicable")
+│       ├── [NN-feature]-data-model.md   ← REQ: Data structures (or reference)
+│       ├── [NN-feature]-ui-design.md    ← REQ: UI design (or "Not Applicable")
+│       ├── [NN-feature]-business-logic.md ← REQ: Workflows and rules
+│       ├── [NN-feature]-nfr.md          ← REQ: Non-functional requirements
+│       ├── [NN-feature]-plan.md         ← IMP: Implementation plan
+│       ├── [NN-feature]-traceability.md ← CM:  Req → Code → Test mapping
+│       └── [NN-feature]-testing-strategy.md ← VER: IF novel test approach
 │
 ├── architecture/
 │   ├── infrastructure.md             ← DES: System infrastructure
@@ -50,12 +50,11 @@ project-root/
 │   ├── risk-register.md             ← SUP: Risks and mitigation
 │   ├── quality-metrics.md           ← QA:  Quality targets
 │   │
-│   └── [feature-name]/              ← IF: Architecture changes needed
+│   └── [NN-feature]/                ← IF: Architecture changes needed
 │       ├── system-design.md          ← DES: Component overview
 │       ├── detailed-design.md        ← DES: Interfaces, class diagrams
 │       └── design-review-findings.md ← QA:  Formal review results
 │
-
 ├── src/                              ← IMP: Implementation
 ├── tests/                            ← VER: All tests (REQUIRED)
 ├── docs/                             ← SUP: Documentation
@@ -71,14 +70,14 @@ Every feature creates the **same 9 spec documents**. Adjust **depth**, not **pre
 | Document | ASPICE | Content Guidance |
 |----------|--------|-----------------|
 | **STORY.md** | REQ | User story, acceptance criteria, scope, business value |
-| **[feature]-api-contract.md** | REQ | Endpoints & payloads if APIs exist; otherwise `"Not Applicable: [reason]"` |
-| **[feature]-data-model.md** | REQ, DES | New entities/relationships; or brief reference to global if unchanged |
-| **[feature]-ui-design.md** | REQ, DES | Layouts, flows, interactions if UI exists; otherwise `"Not Applicable: [reason]"` |
-| **[feature]-business-logic.md** | REQ | Algorithms, workflows, rules; or `"Inherits from [reference]"` if unchanged |
-| **[feature]-nfr.md** | REQ | Performance/security/reliability targets; or `"See global nfr-baseline.md"` |
-| **[feature]-plan.md** | IMP, CM | Phases, tasks, deliverables, quality gates |
-| **[feature]-traceability.md** | CM | Every requirement ID → design → code → test |
-| **[feature]-testing-strategy.md** | VER | Optional: If novel test approach required |
+| **[NN-feature]-api-contract.md** | REQ | Endpoints & payloads if APIs exist; otherwise `"Not Applicable: [reason]"` |
+| **[NN-feature]-data-model.md** | REQ, DES | New entities/relationships; or brief reference to global if unchanged |
+| **[NN-feature]-ui-design.md** | REQ, DES | Layouts, flows, interactions if UI exists; otherwise `"Not Applicable: [reason]"` |
+| **[NN-feature]-business-logic.md** | REQ | Algorithms, workflows, rules; or `"Inherits from [reference]"` if unchanged |
+| **[NN-feature]-nfr.md** | REQ | Performance/security/reliability targets; or `"See global nfr-baseline.md"` |
+| **[NN-feature]-plan.md** | IMP, CM | Phases, tasks, deliverables, quality gates |
+| **[NN-feature]-traceability.md** | CM | Every requirement ID → design → code → test |
+| **[NN-feature]-testing-strategy.md** | VER | Optional: If novel test approach required |
 
 > **Principle**: Don't skip documents — use "Not Applicable" or reference existing docs. This keeps governance consistent and auditable across all feature types.
 
@@ -133,16 +132,17 @@ As a [user], I want [capability], so that [business value]
 
 **Run**: `/sc_specify with @STORY.md`
 
-Creates feature-specific specs from STORY.md. Review and complete **all 8 feature spec documents**.
+Creates feature-specific specs from STORY.md. Review and complete **all 9 feature spec documents**.
 
 Also create if applicable:
-- `architecture/[feature]/system-design.md` — if significant architecture changes
-- `architecture/[feature]/detailed-design.md` — if complex component design needed
-- `testing/[feature]/testing-strategy.md` — if test approach differs from standard
+- `architecture/[NN-feature]/system-design.md` — if significant architecture changes
+- `architecture/[NN-feature]/detailed-design.md` — if complex component design needed
+- `[NN-feature]/[NN-feature]-testing-strategy.md` — if test approach differs from standard
 
 **Quality Gate**:
 ```
-☐ All 8 feature spec documents created (with "N/A" or references where appropriate)
+☐ All 9 feature spec documents created (with "Not Applicable" or references where appropriate)
+☐ File naming consistent: all files follow [NN-feature] pattern matching directory name
 ☐ Traceability plan defined: every requirement mapped to at least one test
 ☐ Architecture design documented (if architecture changes)
 ☐ Testing approach planned (>80% code coverage target)
@@ -154,9 +154,9 @@ Also create if applicable:
 ## Phase 3: Planning (P)
 **ASPICE-Aligned Focus**: IMP planning + CM baselines
 
-**Run**: `/sc_plan with @[feature-folder]`
+**Run**: `/sc_plan with @specs/[NN-feature]/STORY.md`
 
-Creates `[feature]-plan.md` with phases, tasks, deliverables, and quality gates traced to requirements.
+Creates `specs/[NN-feature]/[NN-feature]-plan.md` with phases, tasks, deliverables, and quality gates traced to requirements.
 
 **Quality Gate**:
 ```
@@ -172,7 +172,7 @@ Creates `[feature]-plan.md` with phases, tasks, deliverables, and quality gates 
 ## Phase 4: Implementation (I)
 **ASPICE-Aligned Focus**: IMP + VER + CM
 
-**Run**: `/sc_implement with @[feature]-plan.md`
+**Run**: `/sc_implement with @specs/[NN-feature]/[NN-feature]-plan.md`
 
 ### Code & Review (IMP)
 - Implement feature following design documents
@@ -180,10 +180,10 @@ Creates `[feature]-plan.md` with phases, tasks, deliverables, and quality gates 
 - Document code review findings in `CODE_REVIEW_FINDINGS.md` if formal review conducted
 
 ### Verification & Validation (VER)
-- `tests/unit/[feature]/` — unit tests (>80% coverage)
-- `tests/integration/[feature]/` — component interaction tests
-- `tests/system/[feature]/` — end-to-end requirement validation
-- `tests/acceptance/[feature]/` — user scenarios from STORY.md
+- `tests/unit/[NN-feature]/` — unit tests (>80% coverage)
+- `tests/integration/[NN-feature]/` — component interaction tests
+- `tests/system/[NN-feature]/` — end-to-end requirement validation
+- `tests/acceptance/[NN-feature]/` — user scenarios from STORY.md
 - `TEST_EXECUTION_REPORT.md` — results summary
 - `NONFUNCTIONAL_TEST_RESULTS.md` — if NFRs were defined
 
@@ -192,10 +192,10 @@ Creates `[feature]-plan.md` with phases, tasks, deliverables, and quality gates 
 Update `REQUIREMENTS_TRACEABILITY.md`:
 ```
 REQ-001: [Requirement description]
-  Specified:    specs/[feature]/STORY.md
-  Designed:     architecture/[feature]/system-design.md
-  Implemented:  src/[feature]/module.py
-  Tested:       tests/unit/test_module.py::TestClass::test_case
+  Specified:    specs/[NN-feature]/STORY.md
+  Designed:     architecture/[NN-feature]/system-design.md
+  Implemented:  src/[NN-feature]/module.py
+  Tested:       tests/unit/[NN-feature]/test_module.py::TestClass::test_case
   Status:       ✓ Implemented  ✓ Verified  ✓ Validated
 ```
 
@@ -218,7 +218,7 @@ REQ-001: [Requirement description]
 | Phase | Gate Condition |
 |-------|---------------|
 | **D → S** | Global specs + architecture + STORY.md complete |
-| **S → P** | All 8 feature specs + traceability plan + design (if needed) complete |
+| **S → P** | All 9 feature specs + traceability plan + design (if needed) complete |
 | **P → I** | Implementation plan approved with traceable tasks |
 | **I → Done** | All tests passing + traceability matrix complete + sign-off |
 
@@ -230,7 +230,7 @@ REQ-001: [Requirement description]
 
 > These items reflect ASPICE-*inspired* practices. They are not a substitute for a formal ASPICE capability assessment.
 
-- ☐ **REQ**: STORY.md with acceptance criteria + all 8 spec documents
+- ☐ **REQ**: STORY.md with acceptance criteria + all 9 spec documents
 - ☐ **DES**: Design documentation (if architecture changes)
 - ☐ **IMP**: Code commits with requirement IDs
 - ☐ **VER**: Tests covering >80% of code; all test types executed
